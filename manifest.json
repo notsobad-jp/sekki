@@ -1,0 +1,13 @@
+{
+  "name": "Tab Sekki",
+  "description": "New tab with the traditional seasoning names, 24 Sekki and 72 Kou",
+  "version": "0.1",
+  "incognito": "split",
+  "chrome_url_overrides": {
+    "newtab": "sekki.html"
+  },
+  "web_accessible_resources": [
+  	"app.js"
+  ],
+  "manifest_version": 2
+}

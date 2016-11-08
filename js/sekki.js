@@ -1,3 +1,12 @@
+/**
+Sekki.js
+
+Copyright (c) 2016 NOT SO BAD
+
+This software is released under the MIT License.
+http://opensource.org/licenses/mit-license.php
+*/
+
 (function(global) {
     "use strict;"
 

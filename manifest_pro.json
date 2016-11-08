@@ -1,6 +1,6 @@
 {
-  "name": "Tab Sekki - 二十四節気七十二候を新しいタブで",
-  "short_name": "Tab Sekki",
+  "name": "Tab Sekki Pro - 二十四節気七十二候を新しいタブで",
+  "short_name": "Tab Sekki Pro",
   "description": "New tab with the traditional seasoning names, 24 Sekki and 72 Kou",
   "version": "0.2.0",
   "incognito": "split",
@@ -8,7 +8,7 @@
     "newtab": "sekki.html"
   },
   "web_accessible_resources": [
-  	"app.js"
+  	"app_pro.js"
   ],
   "permissions": [
     "storage"

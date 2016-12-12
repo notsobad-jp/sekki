@@ -35,8 +35,10 @@ function setSekki(sekki) {
 	$("#kou").text(sekki.kou);
 	$("#kou_kana").text(sekki.kou_kana);
 	$("#sekki").text(sekki.sekki);
-	$("#date").text(sekki.date);
 	$("#meaning").text(sekki.meaning);
+
+	var date = toKanjiNum(sekki.date.split('/')[0]) + '月' + toKanjiNum(sekki.date.split('/')[1]) + '日頃';
+	$("#date").text(date);
 
 	var patterns = ['seigaiha', 'sayagata', 'asanoha'];
 	var bg_img = patterns[Math.floor(Math.random()*patterns.length)];
@@ -52,9 +54,9 @@ function setSekki(sekki) {
 	$('head').append('<style>body:before { background: ' + result + '; } </style>');
 
 	if((r+g+b)>500) {
-		$('head').append('<style>#kou, #kou_kana, #meaning, #credit, #credit a { color: #111 !important; } </style>');
+		$('head').append('<style>#kou, #kou_kana, #meaning, #date, #credit, #credit a { color: #111 !important; } </style>');
 	}else {
-		$('head').append('<style>#kou, #kou_kana, #meaning, #credit, #credit a { color: #fefefe !important; } </style>');
+		$('head').append('<style>#kou, #kou_kana, #meaning, #date, #credit, #credit a { color: #fefefe !important; } </style>');
 	}
 }
 
@@ -68,4 +70,18 @@ function getFormattedDate() {
 	var d = ('0' + (now.getDate())).slice(-2);
 
 	return y + '-' + m + '-' + d;
+}
+
+function toKanjiNum(num) {
+	if(num == 0) {return '〇'; }
+	var kan = ["〇","一","二","三","四","五","六","七","八","九"];
+	var oneDigit = num % 10;
+	var tenDigit = Math.floor(num/10);
+
+	var kanjiNum = '';
+	if(tenDigit > 1) { kanjiNum += kan[tenDigit]; }
+	if(tenDigit > 0) { kanjiNum += '十'; }
+	if(oneDigit > 0) { kanjiNum += kan[oneDigit]; }
+
+	return kanjiNum;
 }

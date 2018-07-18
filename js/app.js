@@ -40,6 +40,18 @@ function setSekki(sekki) {
   var date = toKanjiNum(sekki.date.split('/')[0]) + '月' + toKanjiNum(sekki.date.split('/')[1]) + '日頃';
   $("#date").text(date);
 
+  var month = new Date().getMonth() + 1;
+  var m = ('0' + (new Date().getMonth()+1)).slice(-2);
+  var d = ('0' + (new Date().getDate())).slice(-2);
+  //ツイートURLセット
+  var tweetHref = $("#tweet").attr("href");
+  tweetHref = tweetHref.replace(/{{sekkiSekki}}/, sekki.sekki)
+                       .replace(/{{sekkiKou}}/, sekki.kou)
+                       .replace(/{{sekkiKouKana}}/, sekki.kou_kana)
+                       .replace(/{{displayDate}}/, month + "月" + d + "日")
+                       .replace(/{{urlDate}}/, m + d)
+  $("#tweet").attr("href", tweetHref);
+
   var patterns = ['seigaiha', 'sayagata', 'asanoha'];
   var bg_img = patterns[Math.floor(Math.random()*patterns.length)];
   $("body").css("background", "url('../img/"+bg_img+".png')");

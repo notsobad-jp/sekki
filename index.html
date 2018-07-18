@@ -1,6 +1,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Tab Sekki</title>
   <link rel="stylesheet" type="text/css" href="css/semantic.min.css">
   <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet" />
@@ -79,9 +80,12 @@
       </div>
     </div>
     <div id="footer">
-      <button id="random" class="ui black icon circular button" data-tooltip="random" data-inverted="">
+      <button id="random" class="ui black icon circular small button" data-tooltip="random" data-inverted="">
         <i class="icon random"></i>
       </button>
+      <a id="tweet" target="_blank" class="ui black icon circular small button" data-tooltip="tweet" data-inverted="" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftabsekki.notsobad.jp%2F{{urlDate}}&text={{displayDate}}頃は%20%23{{sekkiSekki}}%20%23{{sekkiKou}}%20（{{sekkiKouKana}}）%0a%20%23TabSekki%20%23二十四節気%20%23七十二候">
+        <i class="icon twitter"></i>
+      </a>
       <div id="credit">
         <small>
           <strong><a href="https://chrome.google.com/webstore/detail/tab-sekki-%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%AF%80%E6%B0%97%E4%B8%83%E5%8D%81%E4%BA%8C%E5%80%99/hpiplbccmdafmjoompeplcakgghggcfh" target="_blank">Tab Sekki</a></strong>

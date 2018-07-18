@@ -8,7 +8,7 @@
              "48": "img/icon48.png",
             "128": "img/icon128.png" },
   "chrome_url_overrides": {
-    "newtab": "sekki.html"
+    "newtab": "index.html"
   },
   "web_accessible_resources": [
   	"app.js"

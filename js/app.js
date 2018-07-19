@@ -37,19 +37,18 @@ function setSekki(sekki) {
   $("#sekki").text(sekki.sekki);
   $("#meaning").text(sekki.meaning);
 
-  var date = toKanjiNum(sekki.date.split('/')[0]) + '月' + toKanjiNum(sekki.date.split('/')[1]) + '日頃';
-  $("#date").text(date);
+  var month = sekki.date.split('/')[0];
+  var day = sekki.date.split('/')[1];
+  var kanjiDate = toKanjiNum(month) + '月' + toKanjiNum(day) + '日頃';
+  $("#date").text(kanjiDate);
 
-  var month = new Date().getMonth() + 1;
-  var m = ('0' + (new Date().getMonth()+1)).slice(-2);
-  var d = ('0' + (new Date().getDate())).slice(-2);
   //ツイートURLセット
   var tweetHref = $("#tweet").attr("href");
   tweetHref = tweetHref.replace(/{{sekkiSekki}}/, sekki.sekki)
                        .replace(/{{sekkiKou}}/, sekki.kou)
                        .replace(/{{sekkiKouKana}}/, sekki.kou_kana)
-                       .replace(/{{displayDate}}/, month + "月" + d + "日")
-                       .replace(/{{urlDate}}/, m + d)
+                       .replace(/{{displayDate}}/, kanjiDate)
+                       .replace(/{{urlDate}}/, ('0' + month).slice(-2) + day)
   $("#tweet").attr("href", tweetHref);
 
   var patterns = ['seigaiha', 'sayagata', 'asanoha'];

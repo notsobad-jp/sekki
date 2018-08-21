@@ -3,29 +3,20 @@ $(function(){
   var current = sekki.current();
   setSekki(current);
 
+  // document.fonts.ready.then(function () {
+  //   html2canvas(document.body).then(function(canvas){
+  //     console.log("finished");
+  //     //imgタグのsrcの中に、html2canvasがレンダリングした画像を指定する。
+  //     var imgData = canvas.toDataURL();
+  //     console.log(imgData);
+  //     document.getElementById("result").src = imgData;
+  //   });
+  // });
+
+
   $(document).on('click', '#random', function(){
-    var today = getFormattedDate();
-    chrome.storage.local.get("count", function (value) {
-      var count = 0;
-      if(value['count'] && value['count'][today]) {
-        var count = value['count'][today];
-      }
-
-      if(count < 10) {
-        var data = {};
-        data[today] = count+1;
-        chrome.storage.local.set({'count': data}, function () {
-          var rand = sekki.random();
-          setSekki(rand);
-        });
-      }else {
-        $('.small.modal').modal('show');
-      }
-    });
-  });
-
-  $(document).on('click', ".close", function(){
-    $('.small.modal').modal('hide');
+    var rand = sekki.random();
+    setSekki(rand);
   });
 });
 

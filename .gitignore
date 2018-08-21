@@ -2,3 +2,4 @@
 .bundle
 nohup.out
 node_modules
+cert.json

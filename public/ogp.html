@@ -72,10 +72,11 @@
     <div id="container">
       <div class="ui inverted header">
         <span id="kou"></span>
+        <span id="sekki" class="ui big black label"></span>
         <div class="ui sub header hannari" id="kou_kana"></div>
       </div>
       <div style="font-size:1.2em;">
-        <span id="sekki" class="ui big black label"></span>
+        <!--<span id="sekki" class="ui big black label"></span>-->
         <span id="date"></span>&nbsp;&nbsp;
         <span id="meaning"></span>
       </div>
@@ -96,10 +97,24 @@
     </div>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDyk0FwQG_kX7J4beHtlDAc0_UmpDMF1FE",
+      authDomain: "tabsekki.firebaseapp.com",
+      databaseURL: "https://tabsekki.firebaseio.com",
+      projectId: "tabsekki",
+      storageBucket: "tabsekki.appspot.com",
+      messagingSenderId: "151146015864"
+    };
+    firebase.initializeApp(config);
+  </script>
   <script type="text/javascript" src="lib/js/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="lib/js/html2canvas.min.js"></script>
   <!--<script type="text/javascript" src="js/app.js"></script>-->
   <script type="text/javascript" src="js/ogp.js"></script>
   <script type="text/javascript" src="js/sekki.json"></script>
+
 </body>
 </html>

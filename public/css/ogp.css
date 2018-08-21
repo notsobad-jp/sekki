@@ -1,8 +1,21 @@
-#kou {
+span#kou {
   display: block;
-  line-height: 6rem;
+  line-height: 13rem;
+  font-size: 8rem !important;
+}
+#kou_kana {
+  font-size: 4rem !important;
 }
 
-#container { text-align: center; }
+#container {
+  top: 30% !important;
+  text-align: center;
+}
 
-#footer { display: none; }
+#sekki {
+  margin-top: -24px;
+  font-size: 2rem;
+  padding: .5em;
+}
+
+#date, #meaning, #footer { display: none; }

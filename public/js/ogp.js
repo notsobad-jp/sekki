@@ -6,11 +6,19 @@ $(function(){
   setSekki(current);
 
   document.fonts.ready.then(function () {
-    html2canvas(document.body).then(function(canvas){
-      console.log("finished");
+    html2canvas(document.body, {
+      width: 1200,
+      height: 630,
+      x: 40,
+      y: 50
+    }).then(function(canvas){
       var imgData = canvas.toDataURL();
-      console.log(imgData);
-      // document.getElementById("result").src = imgData;
+
+      var storageRef = firebase.storage().ref();
+      var ref = storageRef.child('images/'+ current['index'] +'.png');
+      ref.putString(imgData, 'data_url').then(function(snapshot) {
+        console.log('Uploaded a blob or file!');
+      });
     });
   });
 });

@@ -1,6 +1,8 @@
+var sekkiJSON = "";
+
+
 $(function(){
-  var sekki = new Sekki();
-  var current = sekki.current();
+  var current = getCurrentSekki();
   setSekki(current);
 
   // document.fonts.ready.then(function () {
@@ -12,15 +14,44 @@ $(function(){
   //     document.getElementById("result").src = imgData;
   //   });
   // });
-
-
   $(document).on('click', '#random', function(){
-    var rand = sekki.random();
+    var rand = getRandomSekki();
     setSekki(rand);
   });
 });
 
 
+//sekki.json読み込み完了時のコールバック。グローバル変数に読み込んだjsonをセット。
+function sekkiLoaded(json){
+  sekkiJSON = json;
+};
+
+
+//現在の節気を取得
+function getCurrentSekki() {
+  var date = new Date();
+  var row = null;
+
+  sekkiJSON.some(function(val,index,array){
+    var row_date = new Date(Date.parse(val.date+"/"+date.getFullYear()));
+
+    if(date <= row_date) {
+      return row;
+    }else {
+      row = val;
+    }
+  });
+  return row;
+}
+
+
+//ランダムで節気を取得
+function getRandomSekki() {
+  return sekkiJSON[ Math.floor(Math.random() * sekkiJSON.length) ];
+}
+
+
+//指定した節気情報を画面にセット
 function setSekki(sekki) {
   $("title").text(sekki.kou);
   $("#kou").text(sekki.kou);

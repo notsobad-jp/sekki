@@ -18,8 +18,8 @@ exports.returnOGP = functions.https.onRequest((req, res) => {
 
   fs.readFile('./template.html', 'utf8', function (err, templateHtml) {
     if(err) { res.status(500).send(err); }
-    var title = sekki.kou + '（'+ sekki.kou_kana +'）- '+ sekki.sekki + ' | Tab Sekki';
-    var description = sekki.sekki + "「" + sekki.kou + '」（'+ sekki.kou_kana + '）' + sekki.meaning;
+    var title = sekki.kou + '（'+ sekki.kou_kana +'） | Tab Sekki - 二十四節気七十二侯';
+    var description = sekki.sekki + '。' + sekki.meaning + '。';
     var keywords = sekki.sekki + "," + sekki.kou + "," + sekki.kou_kana;
 
     const responseHtml = templateHtml

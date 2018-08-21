@@ -1,65 +1,104 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Tab Sekki - 二十四節気七十二侯</title>
+  <link rel="stylesheet" type="text/css" href="lib/css/semantic.min.css">
+  <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet" />
+  <style>
+    #body, #body .ui.header {
+      font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN","HG明朝E","ＭＳ Ｐ明朝","ＭＳ 明朝",serif;
+      font-weight: normal;
+    }
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.2.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.2.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.2.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.2.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.2.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    body:before {
+      z-index: 0;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .hannari { font-family: "Hannari" !important; }
+
+    .segment {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #container {
+      position: relative;
+      top:45%;
+    }
+
+    #kou {
+      font-size:4em !important;
+    }
+
+    #kou_kana {
+      font-size: 2.4em;
+      display: inline;
+      margin-left: 10px;
+    }
+
+    #footer {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+    }
+
+    #credit {
+      float: right;
+      padding-right: 6em;
+      font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    }
+    #credit a {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="body" class="ui very padded basic segment">
+    <div id="container">
+      <div class="ui inverted header">
+        <span id="kou"></span>
+        <div class="ui sub header hannari" id="kou_kana"></div>
+      </div>
+      <div style="font-size:1.2em;">
+        <span id="sekki" class="ui big black label"></span>
+        <span id="date"></span>&nbsp;&nbsp;
+        <span id="meaning"></span>
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <div id="footer">
+      <button id="random" class="ui black icon circular small button" data-tooltip="random" data-inverted="">
+        <i class="icon random"></i>
+      </button>
+      <a id="tweet" target="_blank" class="ui black icon circular small button" data-tooltip="tweet" data-inverted="" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftabsekki.notsobad.jp%2Fsekki%2F{{urlDate}}&text={{displayDate}}頃は%20%23{{sekkiSekki}}%20%23{{sekkiKou}}%20（{{sekkiKouKana}}）%0a%20{{sekkiMeaning}}">
+        <i class="icon twitter"></i>
+      </a>
+      <div id="credit">
+        <small>
+          <strong><a href="https://chrome.google.com/webstore/detail/tab-sekki-%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%AF%80%E6%B0%97%E4%B8%83%E5%8D%81%E4%BA%8C%E5%80%99/hpiplbccmdafmjoompeplcakgghggcfh" target="_blank">Tab Sekki</a></strong>
+           by <a href="http://notsobad.jp" target="_blank">NOT SO BAD</a>
+        </small>
+      </div>
+    </div>
+  </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+  <script type="text/javascript" src="lib/js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="lib/js/semantic.min.js"></script>
+  <script type="text/javascript" src="lib/js/html2canvas.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/sekki.json"></script>
+</body>
 </html>

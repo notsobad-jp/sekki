@@ -39,6 +39,7 @@ function getCurrentSekki() {
       return row;
     }else {
       row = val;
+      row['index'] = index;
     }
   });
   return row;
@@ -47,7 +48,10 @@ function getCurrentSekki() {
 
 //ランダムで節気を取得
 function getRandomSekki() {
-  return sekkiJSON[ Math.floor(Math.random() * sekkiJSON.length) ];
+  var index = Math.floor(Math.random() * sekkiJSON.length);
+  var row = sekkiJSON[index];
+  row['index'] = index;
+  return row;
 }
 
 
@@ -76,6 +80,7 @@ function setSekki(sekki) {
 
   var patterns = ['seigaiha', 'sayagata', 'asanoha'];
   var bg_img = patterns[Math.floor(Math.random()*patterns.length)];
+  //FIXME: $("body").css("background", "url('../img/"+bg_img+".png')");
   $("body").css("background", "url('../img/"+bg_img+".png')");
 
   var hex = sekki.color_code.replace('#','');
@@ -84,9 +89,9 @@ function setSekki(sekki) {
   var b = parseInt(hex.substring(4,6), 16);
   var result = 'rgba('+r+','+g+','+b+',0.7)';
 
-
   $('head').append('<style>body:before { background: ' + result + '; } </style>');
 
+  // 背景色の濃さに応じて文字色を設定
   if((r+g+b)>500) {
     $('head').append('<style>#kou, #kou_kana, #meaning, #date, #credit, #credit a { color: #111 !important; } </style>');
   }else {

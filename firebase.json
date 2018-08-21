@@ -10,6 +10,10 @@
       {
         "source": "/sekki/*",
         "function": "returnOGP"
+      },
+      {
+        "source" : "**",
+        "destination" : "index.html"
       }
     ]
   }

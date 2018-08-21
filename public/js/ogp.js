@@ -1,27 +1,39 @@
 var sekkiJSON = "";
+var intervalId = "";
+var i = 00;
 
 
 $(function(){
-  var current = getCurrentSekki();
-  setSekki(current);
-
   document.fonts.ready.then(function () {
-    html2canvas(document.body, {
-      width: 1200,
-      height: 630,
-      x: 40,
-      y: 50
-    }).then(function(canvas){
-      var imgData = canvas.toDataURL();
-
-      var storageRef = firebase.storage().ref();
-      var ref = storageRef.child('images/'+ current['index'] +'.png');
-      ref.putString(imgData, 'data_url').then(function(snapshot) {
-        console.log('Uploaded a blob or file!');
-      });
-    });
+    intervalId = setInterval(saveOgpImage, 15000);
   });
 });
+
+
+function saveOgpImage() {
+  var current = sekkiJSON[i];
+  if(current == null) {
+    clearInterval(intervalId);
+    return false;
+  }
+  setSekki(current);
+
+  html2canvas(document.body, {
+    width: 1200,
+    height: 630,
+    x: 40,
+    y: 50
+  }).then(function(canvas){
+    var imgData = canvas.toDataURL();
+
+    var storageRef = firebase.storage().ref();
+    var ref = storageRef.child('images/'+ i +'.png');
+    ref.putString(imgData, 'data_url').then(function(snapshot) {
+      console.log('Upload finished: ' + i);
+      i++;
+    });
+  });
+}
 
 
 //sekki.json読み込み完了時のコールバック。グローバル変数に読み込んだjsonをセット。

@@ -5,15 +5,6 @@ $(function(){
   var current = getCurrentSekki();
   setSekki(current);
 
-  // document.fonts.ready.then(function () {
-  //   html2canvas(document.body).then(function(canvas){
-  //     console.log("finished");
-  //     //imgタグのsrcの中に、html2canvasがレンダリングした画像を指定する。
-  //     var imgData = canvas.toDataURL();
-  //     console.log(imgData);
-  //     document.getElementById("result").src = imgData;
-  //   });
-  // });
   $(document).on('click', '#random', function(){
     var rand = getRandomSekki();
     setSekki(rand);
@@ -69,18 +60,17 @@ function setSekki(sekki) {
   $("#date").text(kanjiDate);
 
   //ツイートURLセット
-  var tweetHref = $("#tweet").attr("href");
+  var tweetHref = "https://twitter.com/intent/tweet?url=https%3A%2F%2Ftabsekki.notsobad.jp%2Fsekki%2F{{index}}&text={{displayDate}}頃は%20%23{{sekkiSekki}}%20%23{{sekkiKou}}%20（{{sekkiKouKana}}）%0a%20{{sekkiMeaning}}"
   tweetHref = tweetHref.replace(/{{sekkiSekki}}/, sekki.sekki)
                        .replace(/{{sekkiKou}}/, sekki.kou)
                        .replace(/{{sekkiKouKana}}/, sekki.kou_kana)
                        .replace(/{{displayDate}}/, kanjiDate)
                        .replace(/{{sekkiMeaning}}/, sekki.meaning)
-                       .replace(/{{urlDate}}/, ('0' + month).slice(-2) + day)
+                       .replace(/{{index}}/, sekki.index)
   $("#tweet").attr("href", tweetHref);
 
   var patterns = ['seigaiha', 'sayagata', 'asanoha'];
   var bg_img = patterns[Math.floor(Math.random()*patterns.length)];
-  //FIXME: $("body").css("background", "url('../img/"+bg_img+".png')");
   $("body").css("background", "url('../img/"+bg_img+".png')");
 
   var hex = sekki.color_code.replace('#','');

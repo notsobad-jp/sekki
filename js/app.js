@@ -48,6 +48,7 @@ function setSekki(sekki) {
                        .replace(/{{sekkiKou}}/, sekki.kou)
                        .replace(/{{sekkiKouKana}}/, sekki.kou_kana)
                        .replace(/{{displayDate}}/, kanjiDate)
+                       .replace(/{{sekkiMeaning}}/, sekki.meaning)
                        .replace(/{{urlDate}}/, ('0' + month).slice(-2) + day)
   $("#tweet").attr("href", tweetHref);
 

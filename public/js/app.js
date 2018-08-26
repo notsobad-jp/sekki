@@ -56,7 +56,7 @@ function setSekki(sekki) {
 
   var month = sekki.date.split('/')[0];
   var day = sekki.date.split('/')[1];
-  var kanjiDate = toKanjiNum(month) + '月' + toKanjiNum(day) + '日頃';
+  var kanjiDate = toKanjiNum(month) + '月' + toKanjiNum(day) + '日';
   $("#date").text(kanjiDate);
 
   //ツイートURLセット

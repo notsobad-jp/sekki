@@ -51,7 +51,7 @@ function setSekki(sekki) {
   $("title").text(sekki.kou);
   $("#kou").text(sekki.kou);
   $("#kou_kana").text(sekki.kou_kana);
-  $("#sekki").text(sekki.sekki);
+  $("#sekki").text('【' + sekki.sekki + '】');
   $("#meaning").text(sekki.meaning);
 
   var month = sekki.date.split('/')[0];
@@ -69,23 +69,24 @@ function setSekki(sekki) {
                        .replace(/{{index}}/, sekki.index)
   $("#tweet").attr("href", tweetHref);
 
+  // 背景画像をランダムで設定
   var patterns = ['seigaiha', 'sayagata', 'asanoha'];
   var bg_img = patterns[Math.floor(Math.random()*patterns.length)];
-  $("body").css("background", "url('../img/"+bg_img+".png')");
+  $("body").removeClass('seigaiha sayagata asanoha').addClass(bg_img);
 
+  // 背景色を設定
   var hex = sekki.color_code.replace('#','');
   var r = parseInt(hex.substring(0,2), 16);
   var g = parseInt(hex.substring(2,4), 16);
   var b = parseInt(hex.substring(4,6), 16);
   var result = 'rgba('+r+','+g+','+b+',0.7)';
-
-  $('head').append('<style>body:before { background: ' + result + '; } </style>');
+  $('head').append('<style>body:before { background-color: ' + result + '; } </style>');
 
   // 背景色の濃さに応じて文字色を設定
   if((r+g+b)>500) {
-    $('head').append('<style>#kou, #kou_kana, #meaning, #date, #credit, #credit a { color: #111 !important; } </style>');
+    $('#body').addClass('dark').removeClass('light');
   }else {
-    $('head').append('<style>#kou, #kou_kana, #meaning, #date, #credit, #credit a { color: #fefefe !important; } </style>');
+    $('#body').addClass('light').removeClass('dark');
   }
 }
 

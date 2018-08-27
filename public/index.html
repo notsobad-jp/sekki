@@ -64,6 +64,15 @@
     #credit a {
       text-decoration: underline;
     }
+
+    /* 背景パターン */
+    .seigaiha { background-image: url('../img/seigaiha.png'); }
+    .sayagata { background-image: url('../img/sayagata.png'); }
+    .asanoha { background-image: url('../img/asanoha.png'); }
+
+    /* 背景に合わせて文字色を設定 */
+    .dark #kou, .dark #kou_kana, .dark #sekki, .dark #meaning, .dark #date, .dark #credit, .dark #credit a { color: #111111 !important; }
+    .light #kou, .light #kou_kana, .light #sekki, .light #meaning, .light #date, .light #credit, .light #credit a { color: #fefefe !important; }
   </style>
 </head>
 <body>
@@ -74,7 +83,7 @@
         <div class="ui sub header hannari" id="kou_kana"></div>
       </div>
       <div style="font-size:1.2em;">
-        <span id="sekki" class="ui big black label"></span>
+        <span id="sekki"></span>
         <span id="date"></span>&nbsp;&nbsp;
         <span id="meaning"></span>
       </div>

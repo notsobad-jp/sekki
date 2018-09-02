@@ -56,11 +56,11 @@ function setSekki(sekki) {
 
   var month = sekki.date.split('/')[0];
   var day = sekki.date.split('/')[1];
-  var kanjiDate = toKanjiNum(month) + '月' + toKanjiNum(day) + '日';
+  var kanjiDate = toKanjiNum(month) + '月' + toKanjiNum(day) + '日頃';
   $("#date").text(kanjiDate);
 
   //ツイートURLセット
-  var tweetHref = "https://twitter.com/intent/tweet?url=https%3A%2F%2Ftabsekki.notsobad.jp%2Fsekki%2F{{index}}&text={{displayDate}}頃は%20%23{{sekkiSekki}}%20%23{{sekkiKou}}%20（{{sekkiKouKana}}）%0a%20{{sekkiMeaning}}"
+  var tweetHref = "https://twitter.com/intent/tweet?url=https%3A%2F%2Ftabsekki.notsobad.jp%2Fsekki%2F{{index}}&text={{displayDate}}は%20%23{{sekkiSekki}}%20%23{{sekkiKou}}%20（{{sekkiKouKana}}）%0a%20{{sekkiMeaning}}"
   tweetHref = tweetHref.replace(/{{sekkiSekki}}/, sekki.sekki)
                        .replace(/{{sekkiKou}}/, sekki.kou)
                        .replace(/{{sekkiKouKana}}/, sekki.kou_kana)
